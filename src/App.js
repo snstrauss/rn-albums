@@ -2,7 +2,6 @@ import React from 'react';
 import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import AlbumList from './components/AlbumList';
-import Footer from './components/Footer';
 import Header from './components/Header';
 
 Icon.loadFont();
@@ -30,7 +29,6 @@ export default function App() {
                         Albums <Icon name="headphones" color={APP_BLUE} size={30} />
                     </Header>
                     <AlbumList />
-                    <Footer />
                 </View>
             </SafeAreaView>
         </View>

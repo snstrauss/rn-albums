@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Linking, ScrollView, StyleSheet } from 'react-native';
 import albumsApi from '../api/albums.api';
 import AlbumDetail from './AlbumDetail';
 
@@ -30,12 +30,20 @@ export default class AlbumList extends Component {
 
     }
 
+    goToAlbum = (albumUrl) => {
+
+        console.log(albumUrl);
+        debugger;
+
+        Linking.openURL(albumUrl);
+    }
+
     render() {
         return (
             <ScrollView style={S.container}>
                 {
                     this.state.albums.map(album => (
-                        <AlbumDetail key={album.title} album={album} />
+                        <AlbumDetail key={album.title} album={album} onSelect={this.goToAlbum} />
                     ))
                 }
             </ScrollView>

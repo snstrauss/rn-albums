@@ -1,29 +1,26 @@
 import React from 'react';
-import { Button, Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import Button from './Button';
 import Card from './Card';
 import CardSection from './CardSection';
 
 const Header = StyleSheet.create({
     thumb_container: {
-        backgroundColor: 'green',
-
-        // alignItems: 'center',
-        // justifyContent: 'center'
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     thumbnail: {
-        // borderWidth: 1,
-        // borderColor: 'blue',
-        width: 50,
-        height: 50,
-
-        marginHorizontal: 10
+        width: 60,
+        height: 60,
+        marginHorizontal: 10,
+        borderRadius: 10
     },
     details: {
-        backgroundColor: 'red',
         justifyContent: 'space-around'
     },
-    artist_name: {
-        fontSize: 18
+    album_name: {
+        fontSize: 18,
+        fontWeight: 'bold'
     }
 })
 
@@ -34,24 +31,16 @@ const Main = StyleSheet.create({
         width: null,
         resizeMode: 'contain'
     }
-})
+});
 
-const Footer = StyleSheet.create({
-    buttonContainer: {
-        backgroundColor: 'pink'
-    }
-})
-
-export default function AlbumDetail({ album: { title, artist, url, thumbnail_image: artist_thumbnail, image } }) {
+export default function AlbumDetail({ album: { title, artist, url, thumbnail_image: artist_thumbnail, image }, onSelect }) {
 
     return (
         <Card>
             <CardSection>
-                <View style={Header.thumb_container}>
-                    <Image style={Header.thumbnail} source={{ uri: artist_thumbnail }} />
-                </View>
+                <Image style={Header.thumbnail} source={{ uri: artist_thumbnail }} />
                 <View style={Header.details}>
-                    <Text style={Header.artist_name}>{title}</Text>
+                    <Text style={Header.album_name}>{title}</Text>
                     <Text>{artist}</Text>
                 </View>
             </CardSection>
@@ -59,9 +48,9 @@ export default function AlbumDetail({ album: { title, artist, url, thumbnail_ima
                 <Image style={Main.album_art} source={{ uri: image }} />
             </CardSection>
             <CardSection>
-                <View style={Footer.buttonContainer}>
-                    <Button title="do it" />
-                </View>
+                <Button title="GET IT!" onPress={() => {
+                    onSelect(url);
+                }} />
             </CardSection>
         </Card>
     );
